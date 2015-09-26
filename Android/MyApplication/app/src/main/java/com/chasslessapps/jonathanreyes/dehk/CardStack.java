@@ -11,6 +11,10 @@ public class CardStack {
 
     private ArrayList<Card> cardsInStack;
 
+    public CardStack(ArrayList<Card> cards) {
+        this.cardsInStack = cards;
+    }
+
     public void addCardToTop (Card c) {
         cardsInStack.add(c);
     }
@@ -41,6 +45,10 @@ public class CardStack {
 
     public Card getNthCardFromTop(int n) {
         return cardsInStack.get(n);
+    }
+
+    public CardStack getSubDeck(int startIdx, int endIdx) {
+        return new CardStack((ArrayList<Card>) this.cardsInStack.subList(startIdx, endIdx));
     }
 
 }
