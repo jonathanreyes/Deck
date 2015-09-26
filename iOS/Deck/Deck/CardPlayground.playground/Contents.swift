@@ -11,6 +11,13 @@ enum Suit {
     case Spade
 }
 
+protocol Card {
+    typealias CardValue
+    var name: String { get }
+    var side: Side { get }
+    var value: CardValue { get }
+}
+
 enum PlayingCardValue: Int, CustomStringConvertible {
     case Ace = 1
     case Two = 2
@@ -58,13 +65,6 @@ enum PlayingCardValue: Int, CustomStringConvertible {
     }
 }
 
-protocol Card {
-    typealias CardValue
-    var name: String { get }
-    var side: Side { get }
-    var value: CardValue { get }
-}
-
 struct PlayingCard: Card {
     typealias CardValue = PlayingCardValue
     let name: String
@@ -101,9 +101,9 @@ protocol CardStack {
     func pushAt(index: Int)
 }
 
-struct PlayingDeck: CardStack {
-    typealias CardType = PlayingCard
-    var cards: [CardType]
-    
-}
+//struct PlayingDeck: CardStack {
+//    typealias CardType = PlayingCard
+//    var cards: [CardType]
+//    
+//}
 
