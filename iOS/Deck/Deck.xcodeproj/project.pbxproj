@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,9 +24,9 @@
 		D10B57281BB6353400070535 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D10B572B1BB6353400070535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D10B572D1BB6353400070535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D10B57331BB6385800070535 /* CardPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CardPlayground.playground; sourceTree = "<group>"; };
 		D10B57341BB638FE00070535 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		D10B57361BB6396400070535 /* PlayingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCard.swift; sourceTree = "<group>"; };
+		D12BC3401BB6C5BC00DED138 /* CardsPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CardsPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +59,8 @@
 		D10B57201BB6353400070535 /* Deck */ = {
 			isa = PBXGroup;
 			children = (
+				D12BC3401BB6C5BC00DED138 /* CardsPlayground.playground */,
 				D10B57211BB6353400070535 /* AppDelegate.swift */,
-				D10B57331BB6385800070535 /* CardPlayground.playground */,
 				D10B57341BB638FE00070535 /* Card.swift */,
 				D10B57361BB6396400070535 /* PlayingCard.swift */,
 				D10B57231BB6353400070535 /* ViewController.swift */,
@@ -107,7 +107,7 @@
 				};
 			};
 			buildConfigurationList = D10B57191BB6353400070535 /* Build configuration list for PBXProject "Deck" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -293,6 +293,7 @@
 				D10B57321BB6353400070535 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

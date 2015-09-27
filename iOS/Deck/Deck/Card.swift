@@ -7,7 +7,7 @@
 //
 
 enum Side {
-    case Font
+    case Front
     case Back
 }
 
@@ -16,6 +16,8 @@ protocol Card {
     var name: String { get }
     var side: Side { get }
     var value: CardValue { get }
+    
+    func description() -> String
 }
 
 protocol CardStack {
@@ -29,7 +31,7 @@ protocol CardStack {
 
     func cardAt(index: Int) -> CardType
 
-    func invert() -> [CardType]
+    func invert()
 
     func invertWith(subdeck: [CardType]) -> [CardType]
 

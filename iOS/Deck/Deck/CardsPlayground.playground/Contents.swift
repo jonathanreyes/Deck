@@ -1,29 +1,55 @@
-//
-//  PlayingCard.swift
-//  Deck
-//
-//  Created by Justin Shiiba on 9/25/15.
-//  Copyright © 2015 ChasslessApps. All rights reserved.
-//
+enum Side {
+    case Front
+    case Back
+}
 
-enum Suit: CustomStringConvertible {
+protocol Card {
+    typealias CardValue
+    var name: String { get }
+    var side: Side { get }
+    var value: CardValue { get }
+}
+
+protocol CardStack {
+    typealias CardType
+    
+    var cards: [CardType] { get set }
+    
+    func shuffle()
+    
+    func count() -> Int
+    
+    func cardAt(index: Int) -> CardType
+    
+    func invert() -> [CardType]
+    
+    func invertWith(subdeck: [CardType]) -> [CardType]
+    
+    func subdeckAt(startIndex: Int, endIndex: Int) -> [CardType]
+    
+    func pop() -> CardType?
+    
+    func popWith(number: Int) -> [CardType]
+    
+    func removeAt(index: Int) -> CardType
+    
+    func removeAt(index: Int, withNumber number: Int) -> [CardType]
+    
+    func push(card: CardType)
+    
+    func push(cards: [CardType])
+    
+    func insert(card: CardType, atIndex index: Int)
+    
+    func insert(cards: [CardType], atIndex index: Int)
+    
+}
+
+enum Suit {
     case Club
     case Diamond
     case Heart
     case Spade
-    
-    var description: String {
-        switch self {
-        case .Club:
-            return "Club"
-        case .Diamond:
-            return "Diamond"
-        case .Heart:
-            return "Heart"
-        case .Spade:
-            return "Spade"
-        }
-    }
 }
 
 enum PlayingCardValue: Int, CustomStringConvertible {
@@ -44,7 +70,7 @@ enum PlayingCardValue: Int, CustomStringConvertible {
     var description: String {
         switch self {
         case .Ace:
-            return "Ace"
+            return "One"
         case .Two:
             return "Two"
         case .Three:
@@ -79,16 +105,19 @@ struct PlayingCard: Card {
     let value: CardValue
     let suit: Suit
     let side: Side
-    
-    func description() -> String {
-        return "\(value.description) of \(suit)s"
-    }
 }
 
 class PlayingCardDeck: CardStack {
     typealias CardType = PlayingCard
     
-    var cards: [CardType]
+    var cards: [CardType] {
+        get {
+            return self.cards
+        }
+        set(newCards) {
+            self.cards = newCards
+        }
+    }
     
     init() {
         cards = [CardType]()
@@ -97,81 +126,65 @@ class PlayingCardDeck: CardStack {
     func shuffle() {
         print("hello")
     }
-
+    
     func count() -> Int {
         return cards.count
     }
-
+    
     func cardAt(index: Int) -> CardType {
         return cards.removeAtIndex(index) as CardType
     }
-
-    func invert() {
-        cards = cards.reverse()
+    
+    func invert() -> [CardType] {
+        return cards.reverse()
     }
-
+    
     func invertWith(subdeck: [CardType]) -> [CardType] {
         return subdeck.reverse()
     }
-
+    
     func subdeckAt(startIndex: Int, endIndex: Int) -> [CardType] {
-        let subdeck = Array(cards[startIndex...endIndex]) as [CardType]
-        let range = Range.init(start: startIndex, end: endIndex)
-        
-        for (var index: Int = range.endIndex; index >= range.startIndex; index--) {
-            cards.removeAtIndex(index)
-        }
-        
-        return subdeck
+        return Array(cards[startIndex...endIndex]) as [CardType]
     }
-
+    
     // bottom of deck == 0 index
     func pop() -> CardType? {
         return cards.popLast()
     }
-
+    
     func popWith(number: Int) -> [CardType] {
-        let index = count() - 1
-        return self.removeAt(index, withNumber:number)
+        let range = Range.init(start: self.count() - number, end: self.count())
+        let poppedCards = Array(cards[self.count() - number...self.count()]) as [CardType]
+        cards.removeRange(range)
+        return poppedCards
     }
-
+    
     func removeAt(index: Int) -> CardType {
         return cards.removeAtIndex(index) as CardType
     }
-
-    // removes cards from index down towards zero
+    
     func removeAt(index: Int, withNumber number: Int) -> [CardType] {
-        let cardIndex = index
-        // this is because array starts at 0
-        let startIndex = cardIndex - number + 1
-        let range = Range.init(start: startIndex, end: cardIndex)
-        
-        // this gets a copy of the array that is being removed, copy is returned
-        let removedCards = Array(cards[range.startIndex...range.endIndex]) as [CardType]
-        
-        // theres probably a prettier/more functional way of doing this loop
-        // this removes the cards from the cards array
-        for (var index: Int = range.endIndex; index >= range.startIndex; index--) {
-            cards.removeAtIndex(index)
-        }
-        return removedCards
+        let range = Range.init(start: index, end: index + number)
+        let poppedCards = Array(cards[index...(index+number)]) as [CardType]
+        cards.removeRange(range)
+        return poppedCards
     }
-
+    
     func push(card: CardType) {
         cards.append(card)
     }
-
+    
     func push(cards: [CardType]) {
         self.cards.appendContentsOf(cards)
     }
-
+    
     func insert(card: CardType, atIndex index: Int) {
         cards.insert(card, atIndex: index)
     }
-
+    
     func insert(cards: [CardType], atIndex index: Int) {
         self.cards.insertContentsOf(cards, at: index)
     }
-    
 }
+
 
