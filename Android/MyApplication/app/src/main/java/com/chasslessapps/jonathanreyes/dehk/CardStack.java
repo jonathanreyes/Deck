@@ -11,8 +11,22 @@ public class CardStack {
 
     private ArrayList<Card> cardsInStack;
 
+    /*Constructors*/
     public CardStack(ArrayList<Card> cards) {
         this.cardsInStack = cards;
+    }
+
+    public CardStack() {
+        this.cardsInStack = new ArrayList<Card>();
+    }
+
+    public CardStack(ArrayList<Card> bottomStack, ArrayList<Card> topStack) {
+        bottomStack.addAll(topStack);
+        this.cardsInStack = bottomStack;
+    }
+
+    public int getNumCards() {
+        return this.cardsInStack.size();
     }
 
     public void addCardToTop (Card c) {
@@ -50,5 +64,4 @@ public class CardStack {
     public CardStack getSubDeck(int startIdx, int endIdx) {
         return new CardStack((ArrayList<Card>) this.cardsInStack.subList(startIdx, endIdx));
     }
-
 }

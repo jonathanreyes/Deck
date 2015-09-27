@@ -4,7 +4,7 @@ package com.chasslessapps.jonathanreyes.dehk;
  * Created by jonathanreyes on 9/25/15.
  */
 public class Card {
-    public enum Value {
+    public enum Rank {
         ACE (1),
         TWO (2),
         THREE (3),
@@ -19,14 +19,14 @@ public class Card {
         QUEEN (12),
         KING (13);
 
-        private int valueEnum;
+        private int rankEnum;
 
-        private Value(int v) {
-            this.valueEnum = v;
+        private Rank(int r) {
+            this.rankEnum = r;
         }
     }
 
-    public static enum Suit {
+    public enum Suit {
         SPADES (1),
         HEARTS (2),
         CLUBS (3),
@@ -39,12 +39,12 @@ public class Card {
         }
     }
 
-    private Value value;
+    private Rank rank;
     private Suit suit;
     private boolean faceUp;
 
-    public Card (Value v, Suit s, boolean f) {
-        this.value = v;
+    public Card (Rank r, Suit s, boolean f) {
+        this.rank = r;
         this.suit = s;
         this.faceUp = f;
     }
