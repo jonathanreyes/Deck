@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         let king = PlayingCard(name: "Playing Card", value: PlayingCardValue.King, suit: Suit.Heart, side: Side.Front)
         let ace = PlayingCard(name: "Playing Card", value: PlayingCardValue.Ace, suit: Suit.Diamond, side: Side.Front)
         
-        var deck = PlayingCardDeck()
+        let deck = PlayingCardDeck()
         
         deck.push(nine)
         deck.push(king)
@@ -77,6 +77,17 @@ class ViewController: UIViewController {
         
         let subdeck = deck.subdeckAt(1, endIndex: 3)
         printDeck(deck, withMessage: "got subdeck: \(subdeck)\n deck:")
+        
+        deck.push(subdeck)
+        printDeck(deck, withMessage: "pushed subdeck back")
+        
+        deck.shuffle()
+        printDeck(deck, withMessage: "shuffle deck")
+        deck.shuffle()
+        printDeck(deck, withMessage: "shuffle deck")
+        deck.shuffle()
+        printDeck(deck, withMessage: "shuffle deck")
+        
     }
     
     func printDeck(cardDeck: PlayingCardDeck, withMessage message: String) {

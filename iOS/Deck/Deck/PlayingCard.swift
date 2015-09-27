@@ -95,7 +95,7 @@ class PlayingCardDeck: CardStack {
     }
     
     func shuffle() {
-        print("hello")
+        cards.shuffleInPlace()
     }
 
     func count() -> Int {
