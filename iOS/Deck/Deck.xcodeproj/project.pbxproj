@@ -85,6 +85,7 @@
 				D1EF11E01BB89077001AF547 /* CardStack.swift */,
 				D10B57361BB6396400070535 /* PlayingCard.swift */,
 				D18745B41BBA1D51009EFE2C /* PlayingCardEnum.swift */,
+
 			);
 			name = Models;
 			sourceTree = "<group>";
