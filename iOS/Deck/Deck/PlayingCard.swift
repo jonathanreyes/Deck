@@ -6,93 +6,38 @@
 //  Copyright © 2015 ChasslessApps. All rights reserved.
 //
 
-enum Suit: CustomStringConvertible {
-    case Club
-    case Diamond
-    case Heart
-    case Spade
-    
-    var description: String {
-        switch self {
-        case .Club:
-            return "Club"
-        case .Diamond:
-            return "Diamond"
-        case .Heart:
-            return "Heart"
-        case .Spade:
-            return "Spade"
-        }
-    }
-}
-
-enum PlayingCardValue: Int, CustomStringConvertible {
-    case Ace   = 1
-    case Two   = 2
-    case Three = 3
-    case Four  = 4
-    case Five  = 5
-    case Six   = 6
-    case Seven = 7
-    case Eight = 8
-    case Nine  = 9
-    case Ten   = 10
-    case Jack  = 11
-    case Queen = 12
-    case King  = 13
-    
-    var description: String {
-        switch self {
-        case .Ace:
-            return "Ace"
-        case .Two:
-            return "Two"
-        case .Three:
-            return "Three"
-        case .Four:
-            return "Four"
-        case .Five:
-            return "Five"
-        case .Six:
-            return "Six"
-        case .Seven:
-            return "Seven"
-        case .Eight:
-            return "Eight"
-        case .Nine:
-            return "Nine"
-        case .Ten:
-            return "Ten"
-        case .Jack:
-            return "Jack"
-        case .Queen:
-            return "Queen"
-        case .King:
-            return "King"
-        }
-    }
-}
-
 struct PlayingCard: Card {
     typealias CardValue = PlayingCardValue
     let name: String
     let value: CardValue
     let suit: Suit
-    let side: Side
+    var side: Side
     
     func description() -> String {
-        return "\(value.description) of \(suit)s"
+        return "\(value.description)\(suit)"
     }
 }
 
-class PlayingCardDeck: CardStack {
+class PlayingCardStack: CardStack {
     typealias CardType = PlayingCard
-    
-    var cards: [CardType]
+    typealias CardStackType = PlayingCardStack
     
     init() {
         cards = [CardType]()
+        initDeck()
     }
+    
+    func initWith(stack: CardStackType) -> CardStackType {
+        self.cards = stack.cards
+        return self
+    }
+    
+    func initWith(cards: [CardType]) -> CardStackType {
+        self.cards = cards
+        return self
+    }
+    
+    // MARK: - CardStack Protocol Funcs
     
     func shuffle() {
         cards.shuffleInPlace()
@@ -105,16 +50,37 @@ class PlayingCardDeck: CardStack {
     func cardAt(index: Int) -> CardType {
         return cards.removeAtIndex(index) as CardType
     }
+    
+    func flip(var card: CardType) {
+        switch card.side {
+        case .Front:
+            card.side = Side.Back
+        case .Back:
+            card.side = Side.Front
+        }
+    }
+    
+    func flip(cardStack: CardStackType) {
+        var cards = cardStack.cards
+        for i in 0...(cards.count) {
+            switch cards[i].side {
+            case .Front:
+                cards[i].side = Side.Back
+            case .Back:
+                cards[i].side = Side.Front
+            }
+        }
+    }
 
     func invert() {
         cards = cards.reverse()
     }
 
-    func invertWith(subdeck: [CardType]) -> [CardType] {
-        return subdeck.reverse()
+    func invertWith(subdeck: CardStackType) -> CardStackType {
+        return PlayingCardStack().initWith(subdeck.cards.reverse())
     }
 
-    func subdeckAt(startIndex: Int, endIndex: Int) -> [CardType] {
+    func subdeckAt(startIndex: Int, endIndex: Int) -> CardStackType {
         let subdeck = Array(cards[startIndex...endIndex]) as [CardType]
         let range = Range.init(start: startIndex, end: endIndex)
         
@@ -122,7 +88,7 @@ class PlayingCardDeck: CardStack {
             cards.removeAtIndex(index)
         }
         
-        return subdeck
+        return PlayingCardStack().initWith(subdeck)
     }
 
     // bottom of deck == 0 index
@@ -130,7 +96,7 @@ class PlayingCardDeck: CardStack {
         return cards.popLast()
     }
 
-    func popWith(number: Int) -> [CardType] {
+    func popWith(number: Int) -> CardStackType {
         let index = count() - 1
         return self.removeAt(index, withNumber:number)
     }
@@ -140,7 +106,7 @@ class PlayingCardDeck: CardStack {
     }
 
     // removes cards from index down towards zero
-    func removeAt(index: Int, withNumber number: Int) -> [CardType] {
+    func removeAt(index: Int, withNumber number: Int) -> CardStackType {
         let cardIndex = index
         // this is because array starts at 0
         let startIndex = cardIndex - number + 1
@@ -154,24 +120,47 @@ class PlayingCardDeck: CardStack {
         for (var index: Int = range.endIndex; index >= range.startIndex; index--) {
             cards.removeAtIndex(index)
         }
-        return removedCards
+        return PlayingCardStack().initWith(removedCards)
     }
 
     func push(card: CardType) {
         cards.append(card)
     }
 
-    func push(cards: [CardType]) {
-        self.cards.appendContentsOf(cards)
+    func push(cards stack: CardStackType) {
+        self.cards.appendContentsOf(stack.cards)
     }
 
     func insert(card: CardType, atIndex index: Int) {
         cards.insert(card, atIndex: index)
     }
 
-    func insert(cards: [CardType], atIndex index: Int) {
-        self.cards.insertContentsOf(cards, at: index)
+    func insert(cards: CardStackType, atIndex index: Int) {
+        let cardStack = cards
+        self.cards.insertContentsOf(cardStack.cards, at: index)
     }
     
+    // MARK: - private methods
+    
+    private func initDeck() {
+        let suits = [Suit.Diamond, Suit.Heart, Suit.Club, Suit.Spade]
+        let values = [PlayingCardValue.Ace, PlayingCardValue.Two, PlayingCardValue.Three, PlayingCardValue.Four, PlayingCardValue.Five,
+                      PlayingCardValue.Six, PlayingCardValue.Seven, PlayingCardValue.Eight, PlayingCardValue.Nine, PlayingCardValue.Ten,
+                      PlayingCardValue.Jack, PlayingCardValue.Queen, PlayingCardValue.King]
+        for suit in suits {
+            for cardValue in values {
+                let card = PlayingCard(name: "Playing Card", value: cardValue, suit: suit, side: Side.Back)
+                self.push(card)
+            }
+        }
+        
+        if count() != max_count {
+            assertionFailure("Playing Card Deck doesn't have 52 cards")
+        }
+    }
+    
+    // MARK: - properties
+    internal var cards: [CardType]
+    internal var max_count: Int = 52
 }
 

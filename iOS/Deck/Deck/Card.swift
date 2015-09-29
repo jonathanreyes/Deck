@@ -20,37 +20,3 @@ protocol Card {
     func description() -> String
 }
 
-protocol CardStack {
-    typealias CardType
-    
-    var cards: [CardType] { get set }
-
-    func shuffle()
-
-    func count() -> Int
-
-    func cardAt(index: Int) -> CardType
-
-    func invert()
-
-    func invertWith(subdeck: [CardType]) -> [CardType]
-
-    func subdeckAt(startIndex: Int, endIndex: Int) -> [CardType]
-
-    func pop() -> CardType?
-
-    func popWith(number: Int) -> [CardType]
-
-    func removeAt(index: Int) -> CardType
-
-    func removeAt(index: Int, withNumber number: Int) -> [CardType]
-
-    func push(card: CardType)
-
-    func push(cards: [CardType])
-
-    func insert(card: CardType, atIndex index: Int)
-
-    func insert(cards: [CardType], atIndex index: Int)
-
-}

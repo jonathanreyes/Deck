@@ -6,6 +6,8 @@
 //  Copyright © 2015 ChasslessApps. All rights reserved.
 //
 
+// Inspired by: https://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift
+
 import Foundation
 
 extension CollectionType where Index == Int {
