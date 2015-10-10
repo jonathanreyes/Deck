@@ -20,8 +20,6 @@ protocol CardStackable {
     
     mutating func cardAt(index: Int) -> CardType
     
-    func flip(card: CardType)
-    
     mutating func invert()
     
     mutating func pop() -> CardType?

@@ -11,14 +11,9 @@ struct CardStack<T>: CardStackable {
     
     internal var cards: [T]
     
-    init() {
-        cards = [T]()
+    init(cards: [T]) {
+        self.cards = cards
     }
-    
-//    func initWith(cards: [T]) -> U {
-//        self.cards = cards
-//        return self
-//    }
     
     mutating func shuffle() {
         cards.shuffleInPlace()
@@ -30,11 +25,6 @@ struct CardStack<T>: CardStackable {
     
     mutating func cardAt(index: Int) -> T {
         return cards.removeAtIndex(index) as T
-    }
-    
-    func flip(card: T) {
-        // make flippable protocol?
-        // FIXME:
     }
     
     mutating func invert() {
