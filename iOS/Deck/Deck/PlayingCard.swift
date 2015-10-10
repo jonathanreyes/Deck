@@ -18,28 +18,30 @@ struct PlayingCard: Card {
     }
 }
 
-class PlayingCardStack: CardStack {
+struct PlayingCardStack: CardStack {
     typealias CardType = PlayingCard
-    typealias CardStackType = PlayingCardStack
+    typealias CardStack = PlayingCardStack
+    
+    // MARK: - Initializers
     
     init() {
         cards = [CardType]()
         initDeck()
     }
     
-    func initWith(stack: CardStackType) -> CardStackType {
+    mutating func initWith(stack: CardStack) -> CardStack {
         self.cards = stack.cards
         return self
     }
     
-    func initWith(cards: [CardType]) -> CardStackType {
+    mutating func initWith(cards: [CardType]) -> CardStack {
         self.cards = cards
         return self
     }
     
     // MARK: - CardStack Protocol Funcs
     
-    func shuffle() {
+    mutating func shuffle() {
         cards.shuffleInPlace()
     }
 
@@ -47,7 +49,7 @@ class PlayingCardStack: CardStack {
         return cards.count
     }
 
-    func cardAt(index: Int) -> CardType {
+    mutating func cardAt(index: Int) -> CardType {
         return cards.removeAtIndex(index) as CardType
     }
     
@@ -60,7 +62,7 @@ class PlayingCardStack: CardStack {
         }
     }
     
-    func flip(cardStack: CardStackType) {
+    func flip(cardStack: CardStack) {
         var cards = cardStack.cards
         for i in 0...(cards.count) {
             switch cards[i].side {
@@ -72,15 +74,16 @@ class PlayingCardStack: CardStack {
         }
     }
 
-    func invert() {
+    mutating func invert() {
         cards = cards.reverse()
     }
 
-    func invertWith(subdeck: CardStackType) -> CardStackType {
-        return PlayingCardStack().initWith(subdeck.cards.reverse())
+    func invertWith(subdeck: CardStack) -> CardStack {
+        var returnStack = PlayingCardStack()
+        return returnStack.initWith(subdeck.cards.reverse())
     }
 
-    func subdeckAt(startIndex: Int, endIndex: Int) -> CardStackType {
+    mutating func subdeckAt(startIndex: Int, endIndex: Int) -> CardStack {
         let subdeck = Array(cards[startIndex...endIndex]) as [CardType]
         let range = Range.init(start: startIndex, end: endIndex)
         
@@ -88,25 +91,27 @@ class PlayingCardStack: CardStack {
             cards.removeAtIndex(index)
         }
         
-        return PlayingCardStack().initWith(subdeck)
+        // structs must be set to var to be mutable
+        var returnStack = PlayingCardStack()
+        return returnStack.initWith(subdeck)
     }
 
     // bottom of deck == 0 index
-    func pop() -> CardType? {
+    mutating func pop() -> CardType? {
         return cards.popLast()
     }
 
-    func popWith(number: Int) -> CardStackType {
+    mutating func popWith(number: Int) -> CardStack {
         let index = count() - 1
         return self.removeAt(index, withNumber:number)
     }
 
-    func removeAt(index: Int) -> CardType {
+    mutating func removeAt(index: Int) -> CardType {
         return cards.removeAtIndex(index) as CardType
     }
 
     // removes cards from index down towards zero
-    func removeAt(index: Int, withNumber number: Int) -> CardStackType {
+    mutating func removeAt(index: Int, withNumber number: Int) -> CardStack {
         let cardIndex = index
         // this is because array starts at 0
         let startIndex = cardIndex - number + 1
@@ -120,29 +125,31 @@ class PlayingCardStack: CardStack {
         for (var index: Int = range.endIndex; index >= range.startIndex; index--) {
             cards.removeAtIndex(index)
         }
-        return PlayingCardStack().initWith(removedCards)
+        
+        var returnStack = PlayingCardStack()
+        return returnStack.initWith(removedCards)
     }
 
-    func push(card: CardType) {
+    mutating func push(card: CardType) {
         cards.append(card)
     }
 
-    func push(cards stack: CardStackType) {
+    mutating func push(cards stack: CardStack) {
         self.cards.appendContentsOf(stack.cards)
     }
 
-    func insert(card: CardType, atIndex index: Int) {
+    mutating func insert(card: CardType, atIndex index: Int) {
         cards.insert(card, atIndex: index)
     }
 
-    func insert(cards: CardStackType, atIndex index: Int) {
+    mutating func insert(cards: CardStack, atIndex index: Int) {
         let cardStack = cards
         self.cards.insertContentsOf(cardStack.cards, at: index)
     }
     
     // MARK: - private methods
     
-    private func initDeck() {
+    mutating private func initDeck() {
         let suits = [Suit.Diamond, Suit.Heart, Suit.Club, Suit.Spade]
         let values = [PlayingCardValue.Ace, PlayingCardValue.Two, PlayingCardValue.Three, PlayingCardValue.Four, PlayingCardValue.Five,
                       PlayingCardValue.Six, PlayingCardValue.Seven, PlayingCardValue.Eight, PlayingCardValue.Nine, PlayingCardValue.Ten,

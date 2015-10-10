@@ -21,12 +21,22 @@ class ViewController: UIViewController {
 //        let cards = deck.popWith(5)
 //        printDeck(cards, withMessage: "dealt 5 cards")
 
-        testCards()
+        testInvertSubDeck()
+        //testCards()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func testInvertSubDeck() {
+        let twoSpades = PlayingCard(name: "Playing Card", value: PlayingCardValue.Two, suit: Suit.Spade, side: Side.Back)
+        let twoHearts = PlayingCard(name: "Playing Card", value: PlayingCardValue.Two, suit: Suit.Heart, side: Side.Back)
+        let threeDiamonds = PlayingCard(name: "Playing Card", value: PlayingCardValue.Three, suit: Suit.Diamond, side: Side.Back)
+        
+        var stack = PlayingCardStack()
+        stack.initWith([twoSpades, threeDiamonds, twoHearts])
+        
+        printDeck(stack, withMessage: "before")
+        let subdeck = stack.invertWith(stack.subdeckAt(0, endIndex: 1))
+        printDeck(stack, withMessage: "stack")
+        printDeck(subdeck, withMessage: "subdeck")
     }
 
 
@@ -34,7 +44,7 @@ class ViewController: UIViewController {
         let twoSpades = PlayingCard(name: "Playing Card", value: PlayingCardValue.Two, suit: Suit.Spade, side: Side.Back)
         let twoHearts = PlayingCard(name: "Playing Card", value: PlayingCardValue.Two, suit: Suit.Heart, side: Side.Back)
         
-        let deck = PlayingCardStack()
+        var deck = PlayingCardStack()
         
         print("count: \(deck.count())")
         
@@ -53,7 +63,9 @@ class ViewController: UIViewController {
         
         printDeck(deck, withMessage: "inverted deck")
         
-        let insertCards = PlayingCardStack().initWith([twoSpades, twoHearts])
+        var insertCards = PlayingCardStack()
+        insertCards.initWith([twoSpades, twoHearts])
+        
         deck.insert(insertCards, atIndex: 0)
         
         printDeck(deck, withMessage: "inserting two spade/hearts")

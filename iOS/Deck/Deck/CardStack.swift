@@ -11,46 +11,44 @@
  */
 protocol CardStack {
     typealias CardType
-    typealias CardStackType
+    typealias CardStack
     
     var cards: [CardType] { get set }
     
-    func initWith(stack: CardStackType) -> CardStackType
+    mutating func initWith(stack: CardStack) -> CardStack
     
-    func initWith(cards: [CardType]) -> CardStackType
+    mutating func initWith(cards: [CardType]) -> CardStack
     
-    func shuffle()
+    mutating func shuffle()
 
     func count() -> Int
     
-    func cardAt(index: Int) -> CardType
+    mutating func cardAt(index: Int) -> CardType
     
-    // changes Side enum
     func flip(card: CardType)
     
-    func flip(cards: CardStackType)
+    func flip(cards: CardStack)
     
-    // 1,2,3 -> 3,2,1
-    func invert()
+    mutating func invert()
     
-    func invertWith(subdeck: CardStackType) -> CardStackType
+    func invertWith(subdeck: CardStack) -> CardStack
     
-    func subdeckAt(startIndex: Int, endIndex: Int) -> CardStackType
+    mutating func subdeckAt(startIndex: Int, endIndex: Int) -> CardStack
     
-    func pop() -> CardType?
+    mutating func pop() -> CardType?
     
-    func popWith(number: Int) -> CardStackType
+    mutating func popWith(number: Int) -> CardStack
     
-    func removeAt(index: Int) -> CardType
+    mutating func removeAt(index: Int) -> CardType
     
-    func removeAt(index: Int, withNumber number: Int) -> CardStackType
+    mutating func removeAt(index: Int, withNumber number: Int) -> CardStack
     
-    func push(card: CardType)
+    mutating func push(card: CardType)
     
-    func push(cards stack: CardStackType)
+    mutating func push(cards stack: CardStack)
     
-    func insert(card: CardType, atIndex index: Int)
+    mutating func insert(card: CardType, atIndex index: Int)
     
-    func insert(cards: CardStackType, atIndex index: Int)
+    mutating func insert(cards: CardStack, atIndex index: Int)
     
 }
