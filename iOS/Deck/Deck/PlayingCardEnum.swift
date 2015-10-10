@@ -6,7 +6,7 @@
 //  Copyright © 2015 ChasslessApps. All rights reserved.
 //
 
-enum Suit: CustomStringConvertible {
+enum Suit: CustomStringConvertible, Equatable {
     case Club
     case Diamond
     case Heart
@@ -26,7 +26,7 @@ enum Suit: CustomStringConvertible {
     }
 }
 
-enum PlayingCardValue: Int, CustomStringConvertible {
+enum PlayingCardValue: Int, CustomStringConvertible, Equatable {
     case Ace   = 1
     case Two   = 2
     case Three = 3

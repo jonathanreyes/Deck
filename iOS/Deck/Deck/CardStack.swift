@@ -2,53 +2,61 @@
 //  CardStack.swift
 //  Deck
 //
-//  Created by Justin Shiiba on 9/27/15.
+//  Created by Justin Shiiba on 10/10/15.
 //  Copyright © 2015 ChasslessApps. All rights reserved.
 //
-
-/**
- Basic protocol for all CardStacks - any stack of CardTypes
- */
-protocol CardStack {
-    typealias CardType
-    typealias CardStack
+// T: Card Type
+struct CardStack<T>: CardStackable {
+    typealias CardType = T
     
-    var cards: [CardType] { get set }
+    internal var cards: [T]
     
-    mutating func initWith(stack: CardStack) -> CardStack
+    init() {
+        cards = [T]()
+    }
     
-    mutating func initWith(cards: [CardType]) -> CardStack
+//    func initWith(cards: [T]) -> U {
+//        self.cards = cards
+//        return self
+//    }
     
-    mutating func shuffle()
-
-    func count() -> Int
+    mutating func shuffle() {
+        cards.shuffleInPlace()
+    }
     
-    mutating func cardAt(index: Int) -> CardType
+    func count() -> Int {
+        return cards.count
+    }
     
-    func flip(card: CardType)
+    mutating func cardAt(index: Int) -> T {
+        return cards.removeAtIndex(index) as T
+    }
     
-    func flip(cards: CardStack)
+    func flip(card: T) {
+        // make flippable protocol?
+        // FIXME:
+    }
     
-    mutating func invert()
+    mutating func invert() {
+        cards = cards.reverse()
+    }
+    mutating func pop() -> T? {
+        return cards.popLast()
+    }
     
-    func invertWith(subdeck: CardStack) -> CardStack
+    mutating func removeAt(index: Int) -> T {
+        return cards.removeAtIndex(index) as T
+    }
     
-    mutating func subdeckAt(startIndex: Int, endIndex: Int) -> CardStack
+    mutating func push(card: T) {
+        cards.append(card)
+    }
     
-    mutating func pop() -> CardType?
+    mutating func push(cards stack: CardStack) {
+        self.cards.appendContentsOf(stack.cards)
+    }
     
-    mutating func popWith(number: Int) -> CardStack
-    
-    mutating func removeAt(index: Int) -> CardType
-    
-    mutating func removeAt(index: Int, withNumber number: Int) -> CardStack
-    
-    mutating func push(card: CardType)
-    
-    mutating func push(cards stack: CardStack)
-    
-    mutating func insert(card: CardType, atIndex index: Int)
-    
-    mutating func insert(cards: CardStack, atIndex index: Int)
-    
+    mutating func insert(card: T, atIndex index: Int) {
+        cards.insert(card, atIndex: index)
+    }
 }
