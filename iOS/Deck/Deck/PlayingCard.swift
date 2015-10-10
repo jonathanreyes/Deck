@@ -12,8 +12,15 @@ struct PlayingCard: Card {
     let suit: Suit
     var side: Side
     
+    init(value: PlayingCardValue, suit: Suit, side: Side) {
+        self.value = value
+        self.name  = value.description
+        self.suit  = suit
+        self.side  = side
+    }
+    
     func description() -> String {
-        return "\(value.description)\(suit)"
+        return "\(name)\(suit)"
     }
 }
 

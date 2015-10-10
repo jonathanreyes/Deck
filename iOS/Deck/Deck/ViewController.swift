@@ -13,9 +13,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let twoSpades = PlayingCard(name: "Playing Card", value: PlayingCardValue.Two, suit: Suit.Spade, side: Side.Back)
-        let twoHearts = PlayingCard(name: "Playing Card", value: PlayingCardValue.Two, suit: Suit.Heart, side: Side.Back)
-        let threeDiamonds = PlayingCard(name: "Playing Card", value: PlayingCardValue.Three, suit: Suit.Diamond, side: Side.Back)
+        let twoSpades = PlayingCard(value: PlayingCardValue.Two, suit: Suit.Spade, side: Side.Back)
+        let twoHearts = PlayingCard(value: PlayingCardValue.Two, suit: Suit.Heart, side: Side.Back)
+        let threeDiamonds = PlayingCard(value: PlayingCardValue.Three, suit: Suit.Diamond, side: Side.Back)
         
         let array = [twoSpades, threeDiamonds, twoHearts]
         

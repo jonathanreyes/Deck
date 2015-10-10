@@ -27,6 +27,9 @@ protocol Flippable {
     mutating func flip()
 }
 
+/**
+ flips side enum
+ */
 extension Side: Flippable {
     mutating func flip() {
         switch self {
@@ -38,6 +41,9 @@ extension Side: Flippable {
     }
 }
 
+/**
+ protocol for all cards 
+ */
 protocol Card: Equatable {
     typealias CardValue
     var name: String { get }
@@ -49,6 +55,9 @@ protocol Card: Equatable {
     func ==(lhs: Self, rhs: Self) -> Bool
 }
 
+/**
+ allows cards to flip their sides
+ */
 extension Card {
     mutating func flip() {
         side.flip()
