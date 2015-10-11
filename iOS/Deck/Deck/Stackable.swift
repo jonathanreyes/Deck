@@ -1,5 +1,5 @@
 //
-//  CardStackable.swift
+//  Stackable.swift
 //  Deck
 //
 //  Created by Justin Shiiba on 9/27/15.
@@ -9,7 +9,7 @@
 /**
  Basic protocol for all CardStacks - any stack of CardTypes
  */
-protocol CardStackable {
+protocol Stackable {
     typealias CardType
     
     var cards: [CardType] { get set }

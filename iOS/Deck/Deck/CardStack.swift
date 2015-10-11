@@ -5,8 +5,8 @@
 //  Created by Justin Shiiba on 10/10/15.
 //  Copyright © 2015 ChasslessApps. All rights reserved.
 //
-// T: Card Type
-struct CardStack<T>: CardStackable {
+
+struct CardStack<T>: Stackable {
     typealias CardType = T
     
     internal var cards: [T]

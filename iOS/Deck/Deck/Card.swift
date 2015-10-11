@@ -18,19 +18,7 @@ enum Side: Equatable, CustomStringConvertible {
             return "Back"
         }
     }
-}
-
-/**
- declares ability to flip card
- */
-protocol Flippable {
-    mutating func flip()
-}
-
-/**
- flips side enum
- */
-extension Side: Flippable {
+    
     mutating func flip() {
         switch self {
         case .Back:
@@ -39,6 +27,7 @@ extension Side: Flippable {
             self = .Back
         }
     }
+    
 }
 
 /**
