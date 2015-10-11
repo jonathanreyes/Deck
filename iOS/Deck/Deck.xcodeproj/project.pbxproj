@@ -15,12 +15,24 @@
 		D10B572C1BB6353400070535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10B572A1BB6353400070535 /* LaunchScreen.storyboard */; };
 		D10B57351BB638FE00070535 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10B57341BB638FE00070535 /* Card.swift */; settings = {ASSET_TAGS = (); }; };
 		D10B57371BB6396400070535 /* PlayingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10B57361BB6396400070535 /* PlayingCard.swift */; settings = {ASSET_TAGS = (); }; };
+		D116F87A1BCA01E7009AE773 /* DeckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D116F8791BCA01E7009AE773 /* DeckTests.swift */; };
+		D116F8811BCA0227009AE773 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18048931BC9625400E345B8 /* CardStack.swift */; settings = {ASSET_TAGS = (); }; };
 		D18048921BC95DEB00E345B8 /* PlayingCardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18048911BC95DEB00E345B8 /* PlayingCardStack.swift */; settings = {ASSET_TAGS = (); }; };
 		D18048941BC9625400E345B8 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18048931BC9625400E345B8 /* CardStack.swift */; settings = {ASSET_TAGS = (); }; };
 		D18745B51BBA1D51009EFE2C /* PlayingCardEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18745B41BBA1D51009EFE2C /* PlayingCardEnum.swift */; settings = {ASSET_TAGS = (); }; };
 		D1EF11DE1BB88A16001AF547 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF11DD1BB88A16001AF547 /* UtilityExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 		D1EF11E11BB89077001AF547 /* Stackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF11E01BB89077001AF547 /* Stackable.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D116F87C1BCA01E7009AE773 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D10B57161BB6353400070535 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D10B571D1BB6353400070535;
+			remoteInfo = Deck;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		72A1C5B7A3FF299DB2FDF4C3 /* Pods-Deck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Deck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Deck/Pods-Deck.release.xcconfig"; sourceTree = "<group>"; };
@@ -35,6 +47,9 @@
 		D10B572D1BB6353400070535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D10B57341BB638FE00070535 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		D10B57361BB6396400070535 /* PlayingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCard.swift; sourceTree = "<group>"; };
+		D116F8771BCA01E7009AE773 /* DeckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D116F8791BCA01E7009AE773 /* DeckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTests.swift; sourceTree = "<group>"; };
+		D116F87B1BCA01E7009AE773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D12BC3401BB6C5BC00DED138 /* CardsPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CardsPlayground.playground; sourceTree = "<group>"; };
 		D18048911BC95DEB00E345B8 /* PlayingCardStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCardStack.swift; sourceTree = "<group>"; };
 		D18048931BC9625400E345B8 /* CardStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStack.swift; sourceTree = "<group>"; };
@@ -49,6 +64,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD075BDC5E500CFCEB27266 /* Pods_Deck.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D116F8741BCA01E7009AE773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				D10B57201BB6353400070535 /* Deck */,
+				D116F8781BCA01E7009AE773 /* DeckTests */,
 				D10B571F1BB6353400070535 /* Products */,
 				76BA475998F6C0AA07DE9BBE /* Pods */,
 				41CF22D137D7D3015BC930DF /* Frameworks */,
@@ -86,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				D10B571E1BB6353400070535 /* Deck.app */,
+				D116F8771BCA01E7009AE773 /* DeckTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +128,15 @@
 				D10B572D1BB6353400070535 /* Info.plist */,
 			);
 			path = Deck;
+			sourceTree = "<group>";
+		};
+		D116F8781BCA01E7009AE773 /* DeckTests */ = {
+			isa = PBXGroup;
+			children = (
+				D116F8791BCA01E7009AE773 /* DeckTests.swift */,
+				D116F87B1BCA01E7009AE773 /* Info.plist */,
+			);
+			path = DeckTests;
 			sourceTree = "<group>";
 		};
 		D1EF11DF1BB8903B001AF547 /* Models */ = {
@@ -142,6 +175,24 @@
 			productReference = D10B571E1BB6353400070535 /* Deck.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D116F8761BCA01E7009AE773 /* DeckTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D116F87E1BCA01E7009AE773 /* Build configuration list for PBXNativeTarget "DeckTests" */;
+			buildPhases = (
+				D116F8731BCA01E7009AE773 /* Sources */,
+				D116F8741BCA01E7009AE773 /* Frameworks */,
+				D116F8751BCA01E7009AE773 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D116F87D1BCA01E7009AE773 /* PBXTargetDependency */,
+			);
+			name = DeckTests;
+			productName = DeckTests;
+			productReference = D116F8771BCA01E7009AE773 /* DeckTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -153,6 +204,10 @@
 				TargetAttributes = {
 					D10B571D1BB6353400070535 = {
 						CreatedOnToolsVersion = 7.0;
+					};
+					D116F8761BCA01E7009AE773 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = D10B571D1BB6353400070535;
 					};
 				};
 			};
@@ -170,6 +225,7 @@
 			projectRoot = "";
 			targets = (
 				D10B571D1BB6353400070535 /* Deck */,
+				D116F8761BCA01E7009AE773 /* DeckTests */,
 			);
 		};
 /* End PBXProject section */
@@ -182,6 +238,13 @@
 				D10B572C1BB6353400070535 /* LaunchScreen.storyboard in Resources */,
 				D10B57291BB6353400070535 /* Assets.xcassets in Resources */,
 				D10B57271BB6353400070535 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D116F8751BCA01E7009AE773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +315,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D116F8731BCA01E7009AE773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D116F8811BCA0227009AE773 /* CardStack.swift in Sources */,
+				D116F87A1BCA01E7009AE773 /* DeckTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D116F87D1BCA01E7009AE773 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D10B571D1BB6353400070535 /* Deck */;
+			targetProxy = D116F87C1BCA01E7009AE773 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D10B57251BB6353400070535 /* Main.storyboard */ = {
@@ -360,6 +440,7 @@
 			baseConfigurationReference = ABBE85A473D134AB8BC1DFF0 /* Pods-Deck.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Deck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ChasslessApps.Deck;
@@ -372,10 +453,35 @@
 			baseConfigurationReference = 72A1C5B7A3FF299DB2FDF4C3 /* Pods-Deck.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Deck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ChasslessApps.Deck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D116F87F1BCA01E7009AE773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DeckTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ChasslessApps.DeckTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deck.app/Deck";
+			};
+			name = Debug;
+		};
+		D116F8801BCA01E7009AE773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DeckTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ChasslessApps.DeckTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deck.app/Deck";
 			};
 			name = Release;
 		};
@@ -399,6 +505,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D116F87E1BCA01E7009AE773 /* Build configuration list for PBXNativeTarget "DeckTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D116F87F1BCA01E7009AE773 /* Debug */,
+				D116F8801BCA01E7009AE773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
